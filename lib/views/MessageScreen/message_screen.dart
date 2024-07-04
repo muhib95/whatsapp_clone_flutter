@@ -15,7 +15,7 @@ class MessageScreen extends StatefulWidget {
 class _MessageScreenState extends State<MessageScreen> {
   List<Map> chatDetails = [
     {'message': 'Hello', 'is_me': true, 'time': '07:00PM'},
-    {'message': 'Hello', 'is_me': false, 'time': '07:00PM'},
+    {'message': 'hi', 'is_me': false, 'time': '07:00PM'},
     {'message': 'Hello', 'is_me': true, 'time': '07:00PM'},
     {'message': 'Hello', 'is_me': true, 'time': '07:00PM'},
     {'message': 'Hello', 'is_me': false, 'time': '07:00PM'},
@@ -55,7 +55,7 @@ class _MessageScreenState extends State<MessageScreen> {
       body: Column(
         children: [
           Expanded(
-            flex: 3,
+
             child: ListView.builder(
               padding: EdgeInsets.all(15),
               itemCount: chatDetails.length,
@@ -69,26 +69,33 @@ class _MessageScreenState extends State<MessageScreen> {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          constraints: BoxConstraints(
-                            maxWidth: 200,
-                          ),
-                          // height: 20,
-                          // width: 60,
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          decoration: BoxDecoration(
-                            color: data['is_me'] == true?Color(0xFFfe98bb):Color(0xFF075E55),
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              topLeft: Radius.circular(20),
-                              bottomLeft: Radius.circular(20),
+                        IntrinsicWidth(
+                          child: Container(
+                            constraints: BoxConstraints(
+                              maxWidth: 200,
                             ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              data['message'],
-                              style: TextStyle(color: Colors.white),
+                            // height: 20,
+                            // width: 60,
+                            margin: EdgeInsets.symmetric(vertical: 5),
+                            padding: EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                              color: data['is_me'] == true
+                                  ? Color(0xFFfe98bb)
+                                  : Color(0xFF075E55),
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20),
+                                bottomLeft: Radius.circular(20),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                              child: Center(
+                                child: Text(
+                                  data['message'],
+                                  style: TextStyle(color: Colors.white, ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -106,13 +113,31 @@ class _MessageScreenState extends State<MessageScreen> {
               children: [
                 Expanded(
                   child: Container(
-
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     height: 60,
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(.1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.emoji_emotions_rounded),
+                          suffixIcon: Icon(Icons.link),
+                          border: InputBorder.none,
+                          hintText: 'Enter your message'
+                        ),
+                      ),
                     ),
                   ),
-                )
+                ),
+                SizedBox(width: 10,),
+                CircleAvatar(
+                  backgroundColor: Color(0xFF075E55),
+                    child: Icon(
+                  Icons.send,
+                  color: Colors.white,
+                )),
               ],
             ),
           )
