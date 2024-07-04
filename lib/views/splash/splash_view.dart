@@ -30,10 +30,8 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset(
-          'images/logo.png',
-          height: 100,
-          width: 100,
+        child: Image.network(
+          'https://static.vecteezy.com/system/resources/thumbnails/018/930/748/small_2x/whatsapp-logo-whatsapp-icon-whatsapp-transparent-free-png.png'
         ),
       ),
     );
